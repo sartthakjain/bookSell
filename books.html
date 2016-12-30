@@ -1,0 +1,152 @@
+<html>
+<head>
+  <title>
+    BookSelling
+  </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/animations.js"></script>
+</head>
+
+
+<body>
+
+    <header class="row">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#OnExpand">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="images/logo.png" width="40" /></a>
+                </div>
+                <div class="collapse navbar-collapse" id="OnExpand">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Sell Books </a></li>
+                        <li><a href="#">Books Listing</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">LOGIN</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+   
+
+    <main class="row">
+        <div class="row" style="height:50%;">
+            <div class="banner_content nopadding col-md-12">
+                <div class="row" style="height:50%;">&nbsp;</div>
+                    </div>
+        </div>
+       
+        <div class="row col-lg-8 col-lg-offset-2" >
+            <div class="row">
+                <div class="col-lg-4  heading"><h2>Search & Filter</h2></div>
+                <div class="col-lg-8 heading" >
+                    <div class="col-lg-5">
+                        <h2>Sort</h2>
+                    </div>
+                    <div class="col-lg-3" style="padding-top:20px;">
+                        <select name="sort-alphabatical" class="form-control col-lg-2">
+                            <option value="" selected>A to Z</option>
+                            <option value="">Z to A</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row col-lg-4">
+                    <form action="" method="GET">
+                        <br />
+                        <p>
+                            <input class="form-control" type="text" placeholder="All colleges" />
+                        </p>
+                        <br />
+                        <p>
+                            <input class="form-control" type="text" placeholder="All Branches" />
+                        </p>
+                        <br />
+                        <p>
+                            <select class="form-control">
+                                <option value="All Semester">All Semester</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </p>
+                        <br />
+                        <p>
+                            <button type="submit" class="btn"><i class="fa-fa-search"></i>Search</button>
+                        </p>
+                    </form>
+                </div>
+                <div class="row col-lg-7 col-lg-offset-1 ">
+                    <ul class="nav">
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>   
+                        </li>
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
+                        </li>
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
+                        </li>
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
+                        </li>
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
+                        </li>
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
+                        </li>
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
+                        </li>
+                        <li>
+                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
+                        </li>
+
+                    </ul>
+                     </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer" class="row">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <p>Copyright 2016 &copy; BookSell. All rights reserved. Developed by <a target="_blank" href="iamsarthak.azurewebsites.net">Sarthak Jain</a></p>
+                </div>
+                <div class="col-sm-4">
+                    <ul class="footer-social custom-list nav nav-pills">
+                        <li><a target="_blank" href="https://www.facebook.com/sartthak.jain" title="Facebook"><i class="fa fa-facebook-square"></i><span>Facebook</span></a></li>
+                        <li><a target="_blank" href="https://twitter.com/sartthak" title="Twitter"><i class="fa fa-twitter-square"></i><span>Twitter</span></a></li>
+                        <li><a target="_blank" href="https://in.linkedin.com/in/sartthakjain" title="linkedin"></i><span>Linkedin</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+   <script src="js/animations.js"></script>
+</body>
+</html>
