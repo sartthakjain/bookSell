@@ -5,14 +5,26 @@
         BookSelling
     </title>
 
-    
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,900" rel="stylesheet">
 </head>
 <body>
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
     <header class="row">
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" >
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#OnExpand">
@@ -20,16 +32,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="images/logo.png" width="40" /></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="30" /></a>
                 </div>
                 <div class="collapse navbar-collapse" id="OnExpand">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Sell Books </a></li>
-                        <li><a href="books.html">Books Listing</a></li>
-                    </ul>
+                        <li><a href="books.html"><b>Buy Books</b></a></li>
+                        <li><a  data-toggle="modal" data-target="#sell_modal_2"><b>Sell Books</b></a></li>
+                        <li><a href="index.html"><b>About</b></a></li>
+                        <li><a href="index.html"><b>Contact</b></a></li>
+
+                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">LOGIN</a></li>
-                    </ul>
+                        <ul class="soc">
+                            <li><a class="soc-twitter" href="https://twitter.com/sartthak" target="_blank"></a></li>
+                            <li><a class="soc-facebook" href="https://www.facebook.com/sartthak.jain" target="_blank"></a></li>
+                            </ul> 
+                   </ul>
                 </div>
             </div>
         </nav>
@@ -38,18 +56,70 @@
         <div class="row">
             <div class="banner_content nopadding col-md-12">
                 <div class="row" style="height:50%;">&nbsp;</div>
-                <h1 class="row caption col-lg-6 col-md-offset-6 animation_element" align="right" data-animation="show_one">HELLO</h1>
+                <h1 class="row caption col-lg-6 col-md-offset-6 animation_element" align="right" data-animation="show_one"><b>HELLO</b></h1>
                 <hr />
-                <h1 class="h1 row col-md-offset-6 col-lg-6 subcaption animation_element" align="right" data-animation="show_one">we are <i style="color:red;">BookSell</i></h1>
+                <h1 class="h1 row col-md-offset-6 col-lg-6 subcaption animation_element" align="right" data-animation="show_one">we are <i style="color:yellow;"><b>BookSell</b></i></h1>
             </div>
         </div>
-        <div class="row">
+        <div class="row" style="height:100px;"><span style="color:blue;background-color:yellow;width:4px;height:100px;margin-left:50%;margin-top:20px;position:absolute;">&nbsp;</span>
+        </div>
+        <div class="row" >
+            <div class="row col-lg-6 col-lg-offset-3" style="padding: 30px; color: white !important; ">
+                <ul class="nav-pills nav setup-panel nav-justified thumbnail" style="color:white!important;">
+                    <li><a data-toggle="tab"class="active" href="#search_by_name"><b>Search By Name</b></a></li>
+                    <li><a data-toggle="tab" href="#search_by_course"><b>Search By Course</b></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div id="search_by_name" class=" tab-pane fade  active in">
+                        <br />
+                        <form id="book_name_main" action="books.html" method="GET">
+                            <input type="text" class="form-control col-xs-1 col-lg-offset-3" placeholder="name of book" id="book_name_main_value" style="width:50%;" />
+                        </form>
+                        <br />
+                        <br />
+                    </div>
+                    <div id="search_by_course" class="tab-pane fade">
+                        <form id="bookSearchForm" method="GET" action="books.html" class="form-inline">
+                            <br />
+
+                            <input class="form-control col-lg-offset-2 col-lg-3" type="text" placeholder="All Branches" name="branch" />
+
+                            <select class="form-control col-lg-offset-1 " name="semester">
+                                <option value="All Semester">All Semester</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                            <button id="bookSearchBtn" type="submit" class="btn btn-success col-lg-offset-1"><i class="fa-fa-search"></i>Go</button>
+                        </form>
+                        <br />
+                        <br />
+                    </div>
+
+                </div>
+            </div>
+        
+           
+        </div>
+        <div class="row" style="height:100px;">
+            <span style="color:blue;background-color:yellow;width:4px;height:100px;margin-left:50%;margin-top:20px;position:absolute;">&nbsp;</span>
+        </div>
+
+        <div class="row"><span style="color:blue;background-color:yellow;width:50%;height:4px;margin-left:25%;margin-top:20px;position:absolute;">&nbsp;</span>
+</div>
+             <div class="row">
             <div class="card col-md-4 animation_element" data-animation="show_two" id="buy">
                 <figure>
                     <img src="images/buy.png" class="img-responsive" style="margin-left:42%;" width="80" />
                 </figure>
                 <div>
-                    <h1 align="center">BUY</h1>
+                    <h1 align="center" style="color: yellow;"><b>BUY</b></h1>
+
                     <p align="center">
                         We provide you with all the books, be it Foreign authors or Indian ones at prices that you can't imagine.
                         We effectively provide you a book at less than 15% of the MRP if you buy and sell with us. Buy it to believe it.
@@ -61,7 +131,7 @@
                     <img src="images/sell.png" class="img-responsive" style="margin-left:32%;" width=" 120" />
                 </figure>
                 <div>
-                    <h1 align="center">SELL</h1>
+                    <h1 align="center" style="color: yellow;"><b>SELL</b></h1>
                     <p align="center">
                         At BookSquare you will get the best return price for all your books. Better the condition, more the return price.
                         We effectively provide you a book at less than 15% of the MRP if you buy and sell with us. Sell it to believe it.
@@ -69,14 +139,26 @@
                 </div>
             </div>
         </div>
+
+        <div class="row" style="margin-top:70px;">
+            <span style="color:blue;background-color:yellow;width:50%;height:4px;margin-left:25%;margin-top:20px;position:absolute;">&nbsp;</span>
+        </div>
+         <div class="row" style="height:150px;">
+            <span style="color:blue;background-color:yellow;width:4px;height:150px;margin-left:50%;margin-top:20px;position:absolute;">&nbsp;</span>
+        </div>
+
+
         <div class="row jumbotron animation_element" data-animation="show_three">
-            <h1 align="center">ABOUT US</h1>
+            <h1 align="center"style="color:yellow;"><b>ABOUT US</b></h1>
             <p align="center">
                 We at BookSquare are determined to solve the problem of college books, especially old books as most of us tend to buy old books only,
                 and to provide students with books at minimum market rate and best quality possible.
                 Most of the books are needed only for a few days before the exams and what we find in market are overpriced books in bad conditions.
                 That's where we step in and help the student get the desired books at desired rates in the best possible quality.
             </p>
+        </div>
+        <div class="row" style="height:150px;">
+            <span style="color:blue;background-color:yellow;width:4px;height:100px;margin-left:50%;margin-top:20px;position:absolute;">&nbsp;</span>
         </div>
         <div class="row">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -95,12 +177,13 @@
                                     convenience of my doorstep. My local book vendor has definitely lost one of his customers !!
                                     <br />
                                     <br />
-                                    Sahil Sethi - 4th year, NSIT
+                                    <span style="color:yellow;"><b>  Sahil Sethi </b>- 4th year, NSIT</span> 
 
                                 </h3>
                             </div>
                         </div>
                     </div>
+
                     <div class="item carouseldiv">
                         <div class="row carouselContent">
                             <div class="avatar col-lg-offset-2 col-lg-2" style="background-image:url('/images/rahul.jpg')"></div>
@@ -110,7 +193,7 @@
                                     the next day itself. Keep up the good work!
                                     <br />
                                     <br />
-                                    Shrey Gupta - 4th year, NSIT
+                                    <span style="color:yellow;"><b>  Shrey Gupta </b>- 4th year, NSIT</span>
 
                                 </h3>
                             </div>
@@ -126,7 +209,7 @@
                                     the very next morning that too at economical rates. Great work guys !!
                                     <br />
                                     <br />
-                                    Sarthak Jain- 4th year,JECRC.
+                                    <span style="color:yellow;"><b>  Sarthak Jain </b>- 4th year, JECRC</span>
                                 </h3>
                             </div>
                         </div>
@@ -140,11 +223,17 @@
                 </a>
             </div>
         </div>
-        <div class="row" style="padding-left:20%;padding-right:20%;">
+        <div class="row" style="height:100px;">
+            <span style="color:blue;background-color:yellow;width:4px;height:100px;margin-left:50%;margin-top:20px;position:absolute;">&nbsp;</span>
+        </div>
+            <div class="row" style="padding-left:20%;padding-right:20%;">
             <div class="fb-comments" data-href="" data-numposts="5"></div>
-        <div id="fb-root" data-numposts="1" style="margin-top:10px;"></div>
+        <div id="fb-root" data-numposts="1" style="margin-top:10px;">
+            <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false">Lgnin with facebook</div>
+            </div>
+        </div>
     </main>
-       
+
 
 
         <footer id="footer" class="row">
@@ -166,14 +255,14 @@
             </div>
 
         </footer>
-   
+
     <!---------MODALS START HERE-->
 
     <div class="modal fade " id="sell_modal">
-        <div class="modal-dialog sell_modal">
+        <div class="modal-dialog sell_modal" style="padding:10px;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
-                <h4 class="modal-title">SELL</h4>
+                <h4 class="modal-title">BUY</h4>
             </div>
             <div class="modal-body">
                 <div class="row form-group">
@@ -185,7 +274,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="row">
+                <section class="row" style="height:40%;overflow:scroll;padding-bottom:20px;">
                     <div class="col-xs-12">
                         <table id="sellBooksTable" class="table-responsive table">
                             <thead>
@@ -199,25 +288,27 @@
                             <tbody>
                                 <tr>
                                     <td style="padding:10px;">
-                                        <input type="text" class="form-control" placeholder="Book Name" />
+                                        <div class="ui-widget">
+                                            <input type="text" class="form-control sellform sellBookId" placeholder="Book Name" name="sellBookName " />
+                                        </div>
                                     </td>
                                     <td>
-                                        <select name="sellBookCondition" class="form-control">
-                                            <option value="1">Excllent</option>
-                                            <option value="2">Good</option>
+                                        <select name="sellBookCondition" class="form-control sellform bookConditionId">
+                                            <option value="excellent">Excllent</option>
+                                            <option value="good">Good</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <select name="sellBookQuantity" class="form-control">
+                                        <select name="sellBookQuantity" class="form-control sellform bookQuantityId">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
-                                            <option value="2">3</option>
-                                            <option value="2">4</option>
-                                            <option value="2">5</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <span class="book-selling-price"></span><span class="quant"></span>
+                                        <span class="book-selling-price bookSellingPriceId" ></span><span class="quant"></span>
                                     </td>
                                     <td><button class="close" type="button">&times;</button></td>
                                 </tr>
@@ -225,15 +316,97 @@
                         </table>
                         <div align="right"><a id="add-another-book"> Add another book</a></div>
                     </div>
+                </section>
+                <div class="row" style="bottom:0;">
+                    <button class="btn btn-primary col-lg-3 col-lg-offset-9" style="bottom:0px;padding-top:10px;margin-right:0px;" >NEXT</button>
                 </div>
             </div>
         </div>
     </div>
 
+
+
+    <div class="modal fade " id="sell_modal_2">
+        <div class="modal-dialog sell_modal" style="padding:10px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title">SELL</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-xs-12">
+                        <ul class="nav-pills nav setup-panel nav-justified thumbnail">
+                            <li class="active"><a href="#step-1"><h4>Enter Book Details</h4></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <form id="sell_form_2" method="POST">
+                    <section class="row" style="height:40%;overflow:scroll;padding-bottom:20px;">
+                        <div class="col-xs-12">
+                            <table id="sellBooksTable" class="table-responsive table">
+                                <thead>
+                                    <tr>
+                                        <th>BookName</th>
+                                        <th>Condition</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding:10px;">
+                                            <div class="ui-widget">
+                                                <input type="text" class="form-control sellform sellBookId" placeholder="Book Name" name="sellBookName" id="sellBookName2" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <select name="sellBookCondition" class="form-control sellform bookConditionId" id="bookConditionId2">
+                                                <option value="excellent">Excllent</option>
+                                                <option value="good">Good</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="sellBookQuantity" class="form-control sellform bookQuantityId" id="bookQuantityId2">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="bookPriceId2" name="sellBookPrice" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </section>
+                    <div class="row" style="bottom:0;">
+                        <button type="submit" class="btn btn-primary col-lg-3 col-lg-offset-9" style="bottom:0px;padding-top:10px;margin-right:0px;">SELL</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
     <!------------All the scripts here-->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/animations.js"></script>
+    <script src="js/formFunctions.js"></script>
     <!---------FACEBOOK SCRIPT-->
     <script>
         (function (d, s, id) {
@@ -242,6 +415,10 @@
             js = d.createElement(s); js.id = id;
             js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+
 </body>
 </html>

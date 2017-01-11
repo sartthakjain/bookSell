@@ -11,13 +11,23 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="js/animations.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,400,900" rel="stylesheet">
 </head>
 
 
 <body>
+    <div id="fb-root"></div>
+    <script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
     <header class="row">
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#OnExpand">
@@ -25,15 +35,21 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><img src="images/logo.png" width="40" /></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="30" /></a>
                 </div>
                 <div class="collapse navbar-collapse" id="OnExpand">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Sell Books </a></li>
-                        <li><a href="#">Books Listing</a></li>
+                        <li><a href="books.html">Buy Books</a></li>
+                        <li><a data-toggle="modal" data-target="#sell_modal_2">Sell Books</a></li>
+                        <li><a href="index.html">About</a></li>
+                        <li><a href="index.html">Contact</a></li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">LOGIN</a></li>
+                        <ul class="soc">
+                            <li><a class="soc-twitter" href="https://twitter.com/sartthak" target="_blank"></a></li>
+                            <li><a class="soc-facebook" href="https://www.facebook.com/sartthak.jain" target="_blank"></a></li>
+                        </ul>
                     </ul>
                 </div>
             </div>
@@ -43,42 +59,40 @@
    
 
     <main class="row">
-        <div class="row" style="height:50%;">
-            <div class="banner_content nopadding col-md-12">
-                <div class="row" style="height:50%;">&nbsp;</div>
+        <div class="row" style="height:50%;width:100%; position:fixed;">
+            <div class="banner_content nopadding col-md-12" style="background: url('/images/main_page_welcome_image_white1.jpg'); background-size: cover;">
+                    &nbsp;
                     </div>
         </div>
-       
+      <div class="emptyspace" style="height:30%">&nbsp;</div>    
         <div class="row col-lg-8 col-lg-offset-2" >
-            <div class="row">
-                <div class="col-lg-4  heading"><h2>Search & Filter</h2></div>
-                <div class="col-lg-8 heading" >
+            <div class="row" style="opacity:0.6;">
+                <div class="col-lg-4  heading" style=""><h3 ><b>Search & Filter</b></h3></div>
+                <div class="col-lg-8 heading">
                     <div class="col-lg-5">
-                        <h2>Sort</h2>
+                        <h3><b>Sort</b></h3>
                     </div>
                     <div class="col-lg-3" style="padding-top:20px;">
-                        <select name="sort-alphabatical" class="form-control col-lg-2">
-                            <option value="" selected>A to Z</option>
-                            <option value="">Z to A</option>
+                        <select name="sort-alphabatical" class="form-control col-lg-2" id="sort_alphabatical">
+                            <option value="0" selected>A to Z</option>
+                            <option value="1">Z to A</option>
                         </select>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" style="background-color:whitesmoke;">
                 <div class="row col-lg-4">
-                    <form action="" method="GET">
+                    <form id="bookSearchForm" method="GET">
+                        <br />
+                    
                         <br />
                         <p>
-                            <input class="form-control" type="text" placeholder="All colleges" />
+                            <input class="form-control" type="text" placeholder="All Branches" name="branch" />
                         </p>
                         <br />
                         <p>
-                            <input class="form-control" type="text" placeholder="All Branches" />
-                        </p>
-                        <br />
-                        <p>
-                            <select class="form-control">
+                            <select class="form-control" name="semester">
                                 <option value="All Semester">All Semester</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -92,36 +106,17 @@
                         </p>
                         <br />
                         <p>
-                            <button type="submit" class="btn"><i class="fa-fa-search"></i>Search</button>
+                            <button id="bookSearchBtn" type="submit" class="btn btn-success"><i class="fa-fa-search"></i>Search</button>
                         </p>
                     </form>
                 </div>
                 <div class="row col-lg-7 col-lg-offset-1 ">
-                    <ul class="nav">
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>   
-                        </li>
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
-                        </li>
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
-                        </li>
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
-                        </li>
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
-                        </li>
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
-                        </li>
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
-                        </li>
-                        <li>
-                            <div class="bookdisplay animation_element" data-animation="show_four"></div>
-                        </li>
+                    <ul class="nav" id="searchResults">
+                   
+
+
+
+                     
 
                     </ul>
                      </div>
@@ -147,6 +142,9 @@
 
     </footer>
 
+
+
    <script src="js/animations.js"></script>
+    <script src="js/formFunctions.js"></script>
 </body>
 </html>
