@@ -27,7 +27,7 @@ nav{
     width:30%;
     height:4px;
     border-radius:10%;
-    margin-right:10%;
+    margin-right:0%;
 }
 
 .nopadding{
@@ -76,7 +76,7 @@ nav{
 
 .jumbotron{
     background-image:url("/images/buy_wallpaper.jpg")!important;
-    padding:40px;
+    padding:20px;
     margin-top:20%;
     color:white;
     background-attachment:fixed;
@@ -155,8 +155,8 @@ transform:scale(1,1);
     height:100%;
     padding:20px;
     padding-bottom:40px;
-    background-image:url("/images/blurredbackground.jpg");
-    background-attachment:fixed;
+    background-image:url("/images/main_page_welcome_image_white1.jpg");
+  
     background-size:cover;
 }
 
@@ -375,3 +375,4 @@ transform:scale(1,1);
 
 
 /*social media button ends*/
+

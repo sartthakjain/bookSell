@@ -12,8 +12,7 @@
 
                     console.log(results);
                     $.each(results["books"], function (i, book) {
-                        $('#searchResults').append(' <li><div class=\"bookdisplay animation_element\" data-animation=\"show_four\">price : '
-                            + book.price + '<br>Name : ' + book.book_name + '<br>Condition : ' + book.book_condition + '<br> branch : ' + book.branch + '<br> semester : ' + book.semester + '<br> quantity : ' + book.quantity + '</div> </li>');
+                        $('#searchResults').append(' <li><div class="row "><div class="row"><h2 class=" col-xs-7"><i>JAVA by HC Verma</i></h2><h2 class="col-xs-3 col-lg-offset-2"><span class="label label-warning">Rs 400</span></h4></div><div class="row"><h6 class="col-xs-7"><b>BRANCH</b></h6><h3 class="col-xs-3 col-lg-offset-2"><span class="label label-default">condition</span></h4></div><button  type="button" class="btn btn-success ">PURCHASE</button></div> </li>');
                         $('.bookdisplay').addClass('show_four');
                     });
 

@@ -18,13 +18,23 @@
 <body>
     <div id="fb-root"></div>
     <script>
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '148276065665501',
+                xfbml: true,
+                version: 'v2.8'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     <header class="row">
         <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
@@ -35,20 +45,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="30" /></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="25" /></a>
                 </div>
                 <div class="collapse navbar-collapse" id="OnExpand">
                     <ul class="nav navbar-nav">
-                        <li><a href="books.html">Buy Books</a></li>
-                        <li><a data-toggle="modal" data-target="#sell_modal_2">Sell Books</a></li>
-                        <li><a href="index.html">About</a></li>
-                        <li><a href="index.html">Contact</a></li>
+                        <li><a href="books.html"><b>Buy Books</b></a></li>
+                        <li><a data-toggle="modal" data-target="#sell_modal_2" style="cursor:pointer;"><b>Sell Books</b></a></li>
+                        <li><a href="index.html#about_us"><b>About</b></a></li>
+                        <li><a><div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div></a></li>
+
+
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <ul class="soc">
                             <li><a class="soc-twitter" href="https://twitter.com/sartthak" target="_blank"></a></li>
                             <li><a class="soc-facebook" href="https://www.facebook.com/sartthak.jain" target="_blank"></a></li>
+
                         </ul>
                     </ul>
                 </div>
@@ -59,27 +72,29 @@
    
 
     <main class="row">
-        <div class="row" style="height:50%;width:100%; position:fixed;">
+        <div class="row" style="height:50%;width:100%;">
             <div class="banner_content nopadding col-md-12" style="background: url('/images/main_page_welcome_image_white1.jpg'); background-size: cover;">
-                    &nbsp;
-                    </div>
-        </div>
-      <div class="emptyspace" style="height:30%">&nbsp;</div>    
-        <div class="row col-lg-8 col-lg-offset-2" >
-            <div class="row" style="opacity:0.6;">
-                <div class="col-lg-4  heading" style=""><h3 ><b>Search & Filter</b></h3></div>
-                <div class="col-lg-8 heading">
-                    <div class="col-lg-5">
-                        <h3><b>Sort</b></h3>
-                    </div>
-                    <div class="col-lg-3" style="padding-top:20px;">
-                        <select name="sort-alphabatical" class="form-control col-lg-2" id="sort_alphabatical">
-                            <option value="0" selected>A to Z</option>
-                            <option value="1">Z to A</option>
-                        </select>
+                
+                <div class="row col-lg-8 col-lg-offset-2" style="opacity:0.6;position:absolute; bottom:0px;">
+                    <div class="col-lg-4  heading" style=""><h3><b>Search & Filter</b></h3></div>
+                    <div class="col-lg-8 heading">
+                        <div class="col-lg-5">
+                            <h3><b>Sort</b></h3>
+                        </div>
+                        <div class="col-lg-3" style="padding-top:10px;">
+                            <select name="sort-alphabatical" class="form-control col-lg-2" id="sort_alphabatical"style="margin-top: 0px;" >
+                                <option value="0" selected>A to Z</option>
+                                <option value="1">Z to A</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
+                    </div>
+
+        </div>
+   
+        <div class="row col-lg-8 col-lg-offset-2" >
+    
 
             <div class="row" style="background-color:whitesmoke;">
                 <div class="row col-lg-4">
@@ -142,7 +157,70 @@
 
     </footer>
 
+    <div class="modal fade " id="sell_modal_2">
+        <div class="modal-dialog sell_modal" style="padding:10px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times</button>
+                <h4 class="modal-title">SELL</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                    <div class="col-xs-12">
+                        <ul class="nav-pills nav setup-panel nav-justified thumbnail">
+                            <li class="active"><a href="#step-1"><h4>Enter Book Details</h4></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <form id="sell_form_2" method="POST">
+                    <section class="row" style="height:40%;overflow:scroll;padding-bottom:20px;">
+                        <div class="col-xs-12">
+                            <table id="sellBooksTable" class="table-responsive table">
+                                <thead>
+                                    <tr>
+                                        <th>BookName</th>
+                                        <th>Condition</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="padding:10px;">
+                                            <div class="ui-widget">
+                                                <input type="text" class="form-control sellform sellBookId" placeholder="Book Name" name="sellBookName" id="sellBookName2" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <select name="sellBookCondition" class="form-control sellform bookConditionId" id="bookConditionId2">
+                                                <option value="excellent">Excllent</option>
+                                                <option value="good">Good</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select name="sellBookQuantity" class="form-control sellform bookQuantityId" id="bookQuantityId2">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="bookPriceId2" name="sellBookPrice" />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
+                        </div>
+                    </section>
+                    <div class="row" style="bottom:0;">
+                        <button type="submit" class="btn btn-primary col-lg-3 col-lg-offset-9" style="bottom:0px;padding-top:10px;margin-right:0px;">SELL</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
    <script src="js/animations.js"></script>
     <script src="js/formFunctions.js"></script>
