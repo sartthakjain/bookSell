@@ -104,14 +104,14 @@
     });
 
     $('.sellBookId').on('focus', function () {
-        sellBookAutocomplete();
+     //   sellBookAutocomplete();
     });
     $('.bookConditionId').on('focus', function () {
-        changeCondition();
+      //  changeCondition();
     });
 
     $('.bookQuantityId').on('focus', function () {
-        changeQuant();
+     //   changeQuant();
     });
 
 
@@ -238,7 +238,7 @@ sell_form_2.submit(function (e) {
     var quantity = 1;
     var semester = $('#bookQuantityId2').val();
     var price = $('#bookPriceId2').val();
-    var branch = 4('#bookBranchId2').val();
+    var branch = $('#bookBranchId2').val();
     console.log(book_name);
     $.ajax({
         url: 'http://52.11.56.39:8000/books/sell/sell/books',    //post url here.
@@ -252,8 +252,8 @@ sell_form_2.submit(function (e) {
             "branch": branch
         },
         success: function (response) {
-
-            alert(response);
+            console.log(response);
+            alert(response.message);
         }
 
     });
