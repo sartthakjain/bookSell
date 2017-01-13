@@ -1,38 +1,9 @@
 ﻿$(document).ready(function () {
 
-    //variables that catch from the url
-    var book_name = getUrlParameter('temp');
-    var branch = getUrlParameter('branch'); 
-    var semester = getUrlParameter('semester');
+   
+    fetch_book_data(0);
 
 
-    console.log(book_name,branch,semester);
-    if (book_name != undefined) {
-        var searchUrl = 'http://52.11.56.39:8000/books/sell/get/book/names?book_name='+book_name;  //api url of  book search by name
-    }
-    else {
-            
-                var searchUrl = "http://52.11.56.39:8000/books/sell/get/books?semester="+semester+"&branch="+branch;   //api url of book search by branch and semester
-            
-        }
-
-    console.log(searchUrl);
-        $.ajax({
-           url: searchUrl,   
-            type: 'GET',
-            success: function (results) {
-                 console.log(results);
-                         
-                    $.each(results["books"], function (i, book) {
-                        var bookdata = "<div class=\"row bookdisplay animation_element\"data-animation=\"show_one\" style=\"background-color:whitesmoke;\"><div class=\"row\" style=\"padding:10px;\"><img class=\"img-responsive col-xs-2\" src=\"/images/booklogo.png\" style=\"width:200px;\" /><div class=\"col-xs-8\"><div class=\"row\"><h2 class=\" col-xs-9\">" + book.book_name + "</h2><h2 class=\"col-xs-3\" ><span class=\"label label-default\">Rs " + book.price + "</span></h4></div><div class=\"row\"><h6 class=\"col-xs-8 row\">Branch : " + book.branch + "</h6><h6 class=\"col-xs-8 row\">Condition : " + book.book_condition + "</h6><div class=\"row\"><h6 class=\"col-xs-9\">Quantity : " + book.quantity + "</h6><button  type=\"button\" class=\"btn btn-success col-xs-offset-9\">PURCHASE</button></div></div></div></div></div>";
-                        $('#searchResults').append(bookdata);
-                        $('.bookdisplay').addClass('show_four');
-                    });
-
-               
-
-            }
-        });
 
     
 
@@ -49,13 +20,20 @@
        e.preventDefault();
        var semester=$('#sem_form_2').val();
        var branch = $('#branch_form_2').val();
+
+       if (branch != undefined && semester != undefined) {
+           var searchUrl = "http://52.11.56.39:8000/books/sell/get/books?semester=" + semester + "&branch=" + branch;   //api url of book search by branch and semester
+       } else {
+           var searchUrl = "http://52.11.56.39:8000/books/sell/get/books";
+           }
+
        while ($books.firstChild) {
             $books.removeChild($books.firstChild);
         }
 
 
         $.ajax({
-            url: "http://52.11.56.39:8000/books/sell/get/books?semester="+semester+"&branch="+branch,   //"url of book search by branch and semester"+formattr,
+            url: searchUrl,   //"url of book search by branch and semester"+formattr,
             type: 'GET',
             success: function (result) {
                 console.log(result["books"]);
@@ -114,6 +92,11 @@
      //   changeQuant();
     });
 
+    $('#sort_alphabatical').on('change', function () {
+        var sort = $('#sort_alphabatical').val();
+        fetch_book_data(sort);
+        
+    });
 
 
     function sellBookAutocomplete() {
@@ -274,4 +257,54 @@ var getUrlParameter = function getUrlParameter(sParam) {
             return sParameterName[1] === undefined ? true : sParameterName[1];
         }
     }
+};
+
+
+var fetch_book_data = function (sort) {
+    //variables that catch from the url
+    var book_name = getUrlParameter('temp');
+    var branch = getUrlParameter('branch');
+    var semester = getUrlParameter('semester');
+
+    console.log(book_name, branch, semester);
+    if (book_name != undefined) {
+        var searchUrl = 'http://52.11.56.39:8000/books/sell/get/book/names?book_name=' + book_name;  //api url of  book search by name
+    }
+    else {
+        if (branch != undefined && semester != undefined) {
+            var searchUrl = "http://52.11.56.39:8000/books/sell/get/books?semester=" + semester + "&branch=" + branch;   //api url of book search by branch and semester
+        } else {
+            var searchUrl = "http://52.11.56.39:8000/books/sell/get/books";   //api url of book search by branch and semester
+        }
+    }
+    console.log(sort);
+    console.log(searchUrl);
+    var $books = document.getElementById('searchResults');
+    
+    while ($books.firstChild) {
+        $books.removeChild($books.firstChild);
+    }
+
+    $.ajax({
+        url: searchUrl,
+        type: 'GET',
+        success: function (results) {
+            console.log(results);
+            console.log(sort, "this inner");
+            if (sort == 0) {
+                results["books"].sort();
+            } else {
+                results["books"].reverse();
+            }
+                $.each(results["books"], function (i, book) {
+                var bookdata = "<div class=\"row bookdisplay animation_element\"data-animation=\"show_one\" style=\"background-color:whitesmoke;\"><div class=\"row\" style=\"padding:10px;\"><img class=\"img-responsive col-xs-2\" src=\"/images/booklogo.png\" style=\"width:200px;\" /><div class=\"col-xs-8\"><div class=\"row\"><h2 class=\" col-xs-9\">" + book.book_name + "</h2><h2 class=\"col-xs-3\" ><span class=\"label label-default\">Rs " + book.price + "</span></h4></div><div class=\"row\"><h6 class=\"col-xs-8 row\">Branch : " + book.branch + "</h6><h6 class=\"col-xs-8 row\">Condition : " + book.book_condition + "</h6><div class=\"row\"><h6 class=\"col-xs-9\">Quantity : " + book.quantity + "</h6><button  type=\"button\" class=\"btn btn-success col-xs-offset-9\">PURCHASE</button></div></div></div></div></div>";
+                $('#searchResults').append(bookdata);
+                $('.bookdisplay').addClass('show_four');
+            });
+
+        }
+    });
+
+
+
 };
