@@ -1,27 +1,37 @@
 ﻿$(document).ready(function () {
 
     var book_name = getUrlParameter('temp');
+    var branch = getUrlParameter('branch');
+    var semester = getUrlParameter('semester');
+
+
     console.log(book_name);
     if (book_name != undefined) {
+        var searchUrl = 'https://api.myjson.com/bins/d99pz';  //api of all books list names and details
+    }
+    else {
+        if (branch != undefined && semester != undefined)
+            var searchUrl = "https://api.myjson.com/bins/t9tw7";
+        }
 
         $.ajax({
-            url: 'https://api.myjson.com/bins/d99pz',    //temp url add book_name variable as parameter in new url
+            url: searchUrl,    //temp url add book_name variable as parameter in new url
             type: 'GET',
             success: function (results) {
-                $.each(results["books"], function (i, book) {
-
-                    console.log(results);
+                 console.log(results);
+                         
                     $.each(results["books"], function (i, book) {
-                        $('#searchResults').append(' <li><div class="row "><div class="row"><h2 class=" col-xs-7"><i>JAVA by HC Verma</i></h2><h2 class="col-xs-3 col-lg-offset-2"><span class="label label-warning">Rs 400</span></h4></div><div class="row"><h6 class="col-xs-7"><b>BRANCH</b></h6><h3 class="col-xs-3 col-lg-offset-2"><span class="label label-default">condition</span></h4></div><button  type="button" class="btn btn-success ">PURCHASE</button></div> </li>');
+                        var bookdata = "<div class=\"row bookdisplay animation_element\"data-animation=\"show_one\" style=\"background-color:whitesmoke;\"><div class=\"row\" style=\"padding:10px;\"><img class=\"img-responsive col-xs-2\" src=\"/images/booklogo.png\" style=\"width:200px;\" /><div class=\"col-xs-8\"><div class=\"row\"><h2 class=\" col-xs-9\">" + book.book_name + "</h2><h2 class=\"col-xs-3\" ><span class=\"label label-default\">Rs " + book.price + "</span></h4></div><div class=\"row\"><h6 class=\"col-xs-8 row\">Branch : " + book.branch + "</h6><h6 class=\"col-xs-8 row\">Condition : " + book.book_condition + "</h6><div class=\"row\"><h6 class=\"col-xs-9\">Quantity : " + book.quantity + "</h6><button  type=\"button\" class=\"btn btn-success col-xs-offset-9\">PURCHASE</button></div></div></div></div></div>";
+                        $('#searchResults').append(bookdata);
                         $('.bookdisplay').addClass('show_four');
                     });
 
-                });
+               
 
             }
         });
 
-    }
+    
 
 
 
@@ -30,7 +40,7 @@
     bookForm.submit(function (e) {
         var formattr = bookForm.serialize();
         console.log(formattr);
-        e.preventDefault();
+      //book_name_main  e.preventDefault();
 
         while ($books.firstChild) {
             $books.removeChild($books.firstChild);
@@ -41,10 +51,10 @@
             url: "https://api.myjson.com/bins/t9tw7",                     //"https://acadstaging.com/acadproject/get/books?"+formattr,
             type: 'GET',
             success: function (result) {
-
-                console.log(result);
-                $.each(result["books"], function (i, book) {
-                    $('#searchResults').append(' <li><div class="row "><div class="row"><h2 class=" col-xs-7"><i>JAVA by HC Verma</i></h2><h2 class="col-xs-3 col-lg-offset-2"><span class="label label-warning">Rs 400</span></h4></div><div class="row"><h6 class="col-xs-7"><b>BRANCH</b></h6><h3 class="col-xs-3 col-lg-offset-2"><span class="label label-default">condition</span></h4></div><button  type="button" class="btn btn-success ">PURCHASE</button></div> </li>');
+                console.log(result["books"]);
+                $.each(result["books"], function (i, book) {                 
+                    var bookdata = "<div class=\"row bookdisplay\" style=\"background-color:whitesmoke;\"><div class=\"row\" style=\"padding:10px;\"><img class=\"img-responsive col-xs-2\" src=\"/images/booklogo.png\" style=\"width:200px;\" /><div class=\"col-xs-8\"><div class=\"row\"><h2 class=\" col-xs-9\">" + book.book_name + "</h2><h2 class=\"col-xs-3\" ><span class=\"label label-default\">Rs " + book.price + "</span></h4></div><div class=\"row\"><h6 class=\"col-xs-8 row\">Branch : " + book.branch + "</h6><h6 class=\"col-xs-8 row\">Condition : " + book.book_condition + "</h6><div class=\"row\"><h6 class=\"col-xs-9\">Quantity : " + book.quantity + "</h6><button  type=\"button\" class=\"btn btn-success col-xs-offset-9\">PURCHASE</button></div></div></div></div></div>";
+                   $('#searchResults').append(bookdata);
                     $('.bookdisplay').addClass('show_four');
                 });
 
@@ -59,7 +69,7 @@
 
 
     $('#sell').click(function () {
-        $("#sell_modal").modal('show');
+        $("#sell_modal_2").modal('show');
     });
 
     $('#buy').click(function () {
@@ -212,6 +222,8 @@ $('#book_name_main').submit(function (e) {
     window.location = "/books.html?temp=" + book_name;
 
 });
+
+
 
 //sell book POST call
 var sell_form_2 = $('#sell_form_2');
