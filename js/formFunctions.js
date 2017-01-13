@@ -1,21 +1,24 @@
 ﻿$(document).ready(function () {
 
+    //variables that catch from the url
     var book_name = getUrlParameter('temp');
-    var branch = getUrlParameter('branch');
+    var branch = getUrlParameter('branch'); 
     var semester = getUrlParameter('semester');
 
 
-    console.log(book_name);
+    console.log(book_name,branch,semester);
     if (book_name != undefined) {
-        var searchUrl = 'https://api.myjson.com/bins/d99pz';  //api of all books list names and details
+        var searchUrl = 'http://52.11.56.39:8000/books/sell/get/book/names?book_name='+book_name;  //api url of  book search by name
     }
     else {
-        if (branch != undefined && semester != undefined)
-            var searchUrl = "https://api.myjson.com/bins/t9tw7";
+            
+                var searchUrl = "http://52.11.56.39:8000/books/sell/get/books?semester="+semester+"&branch="+branch;   //api url of book search by branch and semester
+            
         }
 
+    console.log(searchUrl);
         $.ajax({
-            url: searchUrl,    //temp url add book_name variable as parameter in new url
+           url: searchUrl,   
             type: 'GET',
             success: function (results) {
                  console.log(results);
@@ -34,21 +37,25 @@
     
 
 
-
+    //search on book listing page without page refresh
     var $books = document.getElementById('searchResults');
     var bookForm = $('#bookSearchForm');
     bookForm.submit(function (e) {
-        var formattr = bookForm.serialize();
-        console.log(formattr);
-      //book_name_main  e.preventDefault();
 
-        while ($books.firstChild) {
+
+
+        var formattr = bookForm.serialize();  //form variables are stored here
+        console.log(formattr);
+       e.preventDefault();
+       var semester=$('#sem_form_2').val();
+       var branch = $('#branch_form_2').val();
+       while ($books.firstChild) {
             $books.removeChild($books.firstChild);
         }
 
 
         $.ajax({
-            url: "https://api.myjson.com/bins/t9tw7",                     //"https://acadstaging.com/acadproject/get/books?"+formattr,
+            url: "http://52.11.56.39:8000/books/sell/get/books?semester="+semester+"&branch="+branch,   //"url of book search by branch and semester"+formattr,
             type: 'GET',
             success: function (result) {
                 console.log(result["books"]);
@@ -106,9 +113,6 @@
     $('.bookQuantityId').on('focus', function () {
         changeQuant();
     });
-
-
-
 
 
 
@@ -231,22 +235,25 @@ sell_form_2.submit(function (e) {
     e.preventDefault();
     var book_name = $('#sellBookName2').val();
     var condition = $('#bookConditionId2').val();
-    var quantity = $('#bookQuantityId2').val();
+    var quantity = 1;
+    var semester = $('#bookQuantityId2').val();
     var price = $('#bookPriceId2').val();
+    var branch = 4('#bookBranchId2').val();
     console.log(book_name);
     $.ajax({
-        url: '',
+        url: 'http://52.11.56.39:8000/books/sell/sell/books',    //post url here.
         type: 'POST',
         data: {
-            "book_name": "Java",
-            "condition": "Good",
-            "quantity": 5,
-            "price": 890,
-            "semester": 2,
-            "branch": "CSE"
+            "book_name": book_name,
+            "condition": condition,
+            "quantity": quantity,
+            "price": price,
+            "semester": semester,
+            "branch": branch
         },
-        success: function () {
+        success: function (response) {
 
+            alert(response);
         }
 
     });

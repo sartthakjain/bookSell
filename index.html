@@ -88,14 +88,14 @@
                                 <br />
                             </div>
                             <div id="search_by_course" class="tab-pane fade">
-                                <form id="bookSearchForm" method="GET" action="books.html" class="form-inline">
+                                <form id="bookSearchFormMainPage" method="GET" action="books.html" class="form-inline">
                                     <br />
 
                                     <input class="form-control col-lg-offset-1 col-lg-3" type="text" placeholder="All Branches" name="branch" />
 
-                                    <select class="form-control col-lg-offset-1 " name="semester">
-                                        <option value="All Semester">All Semester</option>
-                                        <option value="1">1</option>
+                                    <select class="form-control col-lg-offset-1 " name="semester" >
+                                        <option value="" >All Semesters</option>
+                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
                                         <option value="4">4</option>
@@ -350,8 +350,9 @@
                                     <tr>
                                         <th>BookName</th>
                                         <th>Condition</th>
-                                        <th>Quantity</th>
+                                        <th>Semester</th>
                                         <th>Price</th>
+                                        <th>Branch</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -374,10 +375,16 @@
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
                                             </select>
                                         </td>
                                         <td>
                                             <input type="text" class="form-control" id="bookPriceId2" name="sellBookPrice" />
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" id="bookBranchId2" name="sellBookBranch" />
                                         </td>
                                     </tr>
                                 </tbody>
